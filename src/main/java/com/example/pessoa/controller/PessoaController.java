@@ -84,9 +84,12 @@ public class PessoaController {
 	    	
 	    	PessoaDTO pessoa = pessoaService.buscarId(id);
 	    	
+	    	if(id > 0) {
+	    	
 	    		return new ResponseEntity<PessoaDTO>(pessoa, HttpStatus.OK);
+	    	}
 	 
-	    	//return new ResponseEntity<PessoaDTO>(HttpStatus.NO_CONTENT);
+	    	return new ResponseEntity<PessoaDTO>(HttpStatus.NO_CONTENT);
 	    }
 
 }

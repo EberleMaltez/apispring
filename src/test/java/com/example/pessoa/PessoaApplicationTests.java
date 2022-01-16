@@ -1,8 +1,10 @@
 package com.example.pessoa;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -32,11 +34,20 @@ public class PessoaApplicationTests {
 	}
 	
 	@Test
+	public void CreatePessoa() {
+		when(repository.save(any())).thenReturn(new Pessoa());
+	}
+	
+	@Test
 	public void getPessoasTest() {
 		when(repository.findAll()).thenReturn(Stream
 				.of(new Pessoa(), new Pessoa()).collect(Collectors.toList()));
 		assertEquals(2, service.listaPessoas().size());
 	}
-	
-	
+		
+	@Test
+	public void getPessoaByIdTest(Long id) {
+		 Pessoa pessoa = new Pessoa();
+		when(repository.findById(1L)).thenReturn(Optional.of(pessoa));
+	}
 }
