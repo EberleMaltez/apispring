@@ -37,4 +37,6 @@ public class PessoaApplicationTests {
 				.of(new Pessoa(), new Pessoa()).collect(Collectors.toList()));
 		assertEquals(2, service.listaPessoas().size());
 	}
+	
+	
 }

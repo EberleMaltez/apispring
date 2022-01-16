@@ -38,7 +38,7 @@ public class PessoaController {
 	    	}
 	    }
 	    
-	    @PutMapping("/pessoa/{id}")
+	    @PutMapping("/pessoa")
 	    
 	    public ResponseEntity<Pessoa> atualizarPessoa(@RequestBody Pessoa pessoa){
 	    	try {
@@ -80,16 +80,13 @@ public class PessoaController {
 	    }
 	    
 	    @GetMapping("/pessoa/{id}")
-	    public ResponseEntity<Pessoa> getPessoaPorId(@PathVariable Long id){
+	    public ResponseEntity<PessoaDTO> getPessoaPorId(@PathVariable Long id){
 	    	
+	    	PessoaDTO pessoa = pessoaService.buscarId(id);
 	    	
-	    	Optional<Pessoa> cliente = pessoaService.buscarPorId(id);
-	    	
-	    	if(cliente.isPresent()) {
-	    		return new ResponseEntity<Pessoa>(cliente.get(), HttpStatus.OK);
-	    	}
-	    	
-	    	return new ResponseEntity<Pessoa>(HttpStatus.NO_CONTENT);
+	    		return new ResponseEntity<PessoaDTO>(pessoa, HttpStatus.OK);
+	 
+	    	//return new ResponseEntity<PessoaDTO>(HttpStatus.NO_CONTENT);
 	    }
 
 }
